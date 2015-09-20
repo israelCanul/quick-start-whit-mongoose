@@ -1,10 +1,7 @@
 exports = module.exports = function(app, mongoose) {
 
-	var Schema = mongoose.Schema
-	  , ObjectId = Schema.ObjectId;
-
-	var book = new Schema({
-	    nombre    : ObjectId
+	var book = new mongoose.Schema({
+	    nombre    : String
 	  , title     : String
 	  , editorial : String
 	  , año       : Number
