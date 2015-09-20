@@ -48,3 +48,32 @@ exports.putBook= function(req,res){
 		});
 	});
 };
+
+exports.findById=function(req,res){
+	console.log('/GET to Id');
+	console.log('Get book by Id: '+req.params.id);	
+      	Book.findById(req.params.id, function(err, book) {
+	        if(err) return res.send(500, err.message);
+	        var mens=[];
+	        console.log('GET /book/' + req.params.id);
+	        mens.push(book);
+	        mens.push({confi:{
+	          id:234,
+	          nombre:"Israel Canul"
+	        }});
+	        res.status(200).jsonp(mens);
+	    });
+};
+
+
+exports.deleteBook = function(req, res) {
+	Book.findById(req.params.id, function(err, book) {
+		console.log('/Delete book by Id');
+		console.log('Delete book with Id: '+req.params.id);
+		book.remove(function(err) {
+			if(err) return res.send(500, err.message);
+      		res.status(200);
+		});
+		res.send("book removed by id "+req.params.id);
+	});
+};

@@ -20,34 +20,16 @@ var models     = require('./model/book')(app, mongoose);
 var contBooks= require('./controllers/controllerBooks');
 var Book = mongoose.model('Book');
 
-//obtener todos los datos de una coleccion
+//obtener los datos de una coleccion o agregar una nueva coleccion
 app.route('/book')
     .get(contBooks.findAllBooks)
     .post(contBooks.addBooks);
 
-  
-
-//enroutar las peticiones
+//Operaciones sobre un id
 app.route('/book/:id')
-  .get(function(req, res) {
-      Book.findById(req.params.id, function(err, book) {
-        if(err) return res.send(500, err.message);
-        var mens=[];
-        console.log('GET /tvshow/' + req.params.id);
-        mens.push(book);
-        mens.push({confi:{
-          id:234,
-          nombre:"Israel Canul"
-        }});
-        res.status(200).jsonp(mens);
-      	
-      });
-    })
+  .get(contBooks.findById)
   .post(contBooks.putBook)
-  .put(function(req, res) {
-    res.send('Update the book');
-    console.log(req.body);
-  });
+  .delete(contBooks.deleteBook);
 
 
 // Start server
