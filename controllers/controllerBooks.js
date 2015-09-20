@@ -34,8 +34,17 @@ exports.addBooks = function(req, res) {
 
 exports.putBook= function(req,res){
 	console.log('/POST to Id');
-	console.log('Updating book with Id: '+req.param.id);
-	res.charset='utf8';
-	res.header('Content-Type', 'text/html');
-	res.end('Updating book with Id: '+req.param.id);
-}
+	console.log('Updating book with Id: '+req.params.id);
+	Book.findById(req.params.id, function(err, book) {
+      	book.nombre    = req.body.nombre;
+      	book.title     = req.body.title;
+      	book.editorial = req.body.editorial;
+      	book.año       = req.body.año;
+      	// se guarda la informacion actualizada 
+      	book.save(function(err) {
+      		// se atrapa el error
+			if(err) return res.send(500, err.message);
+      		res.status(200).jsonp(book);
+		});
+	});
+};
