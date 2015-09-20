@@ -15,7 +15,7 @@ db.once('open', function (callback) {
 //convertir la app para recibir y transportar json
 app.use(bodyParser.json());
 
-//importar el modelo de mongoose
+//importar el modelo de mongoose y el controlador
 var models     = require('./model/book')(app, mongoose);
 var contBooks= require('./controllers/controllerBooks');
 var Book = mongoose.model('Book');
@@ -43,13 +43,7 @@ app.route('/book/:id')
       	
       });
     })
-  .post(function(req, res) {
-
-    
-
-    //res.jsonp(req.body);
-    //console.log(req.body);
-  })
+  .post(contBooks.putBook)
   .put(function(req, res) {
     res.send('Update the book');
     console.log(req.body);

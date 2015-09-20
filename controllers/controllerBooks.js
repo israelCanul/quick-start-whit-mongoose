@@ -31,3 +31,11 @@ exports.addBooks = function(req, res) {
       console.log(req.body);
     });
 };
+
+exports.putBook= function(req,res){
+	console.log('/POST to Id');
+	console.log('Updating book with Id: '+req.param.id);
+	res.charset='utf8';
+	res.header('Content-Type', 'text/html');
+	res.end('Updating book with Id: '+req.param.id);
+}
