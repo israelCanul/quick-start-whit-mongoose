@@ -14,7 +14,7 @@ exports.findAllBooks = function(req, res) {
 //GET - Funcion para agregar un nuevo libro a la coleccion a traves de la 
 //		url : localhost:3000/books
 //GET - This function added a new book on the colection 
-// 		across the url localhost:3000/books
+// 		by the url localhost:3000/books
 exports.addBooks = function(req, res) {
 	console.log('/POST');
 	console.log('Agregando un nuevo libro:');
@@ -31,7 +31,8 @@ exports.addBooks = function(req, res) {
       console.log(req.body);
     });
 };
-
+//POST - ACtualizar un item a traves de su id
+//POST - Update a item by Id
 exports.putBook= function(req,res){
 	console.log('/POST to Id');
 	console.log('Updating book with Id: '+req.params.id);
@@ -48,7 +49,8 @@ exports.putBook= function(req,res){
 		});
 	});
 };
-
+//GET - Obetener la descripcion de un item a traves de su Id
+//GET - get a item book  by id
 exports.findById=function(req,res){
 	console.log('/GET to Id');
 	console.log('Get book by Id: '+req.params.id);	
@@ -65,7 +67,8 @@ exports.findById=function(req,res){
 	    });
 };
 
-
+//DELETE - Eliminar un elemento por su Id
+//DELETE - Delete a item by Id
 exports.deleteBook = function(req, res) {
 	Book.findById(req.params.id, function(err, book) {
 		console.log('/Delete book by Id');
