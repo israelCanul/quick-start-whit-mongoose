@@ -17,17 +17,13 @@ app.use(bodyParser.json());
 
 //importar el modelo de mongoose
 var models     = require('./model/book')(app, mongoose);
+var contBooks= require('./controllers/controllerBooks');
 var Book = mongoose.model('Book');
 
 //obtener todos los datos de una coleccion
 app.route('/book')
-    .get(function(req, res) {
-      Book.find(function(err, book) {
-      if(err) res.send(500, err.message);
-      console.log('GET /tvshows')
-      res.status(200).jsonp(book);
-    });
-});
+    .get(contBooks.findAllBooks)
+    .post(contBooks.addBooks);
 
   
 
@@ -36,25 +32,20 @@ app.route('/book/:id')
   .get(function(req, res) {
       Book.findById(req.params.id, function(err, book) {
         if(err) return res.send(500, err.message);
-
+        var mens=[];
         console.log('GET /tvshow/' + req.params.id);
-        res.status(200).jsonp(book);
+        mens.push(book);
+        mens.push({confi:{
+          id:234,
+          nombre:"Israel Canul"
+        }});
+        res.status(200).jsonp(mens);
+      	
       });
     })
   .post(function(req, res) {
 
-    var book = new Book({
-      nombre    : req.body.nombre
-      , title     : req.body.title
-      , editorial : req.body.editorial
-      , año       : req.body.año
-    });
     
-    book.save(function(err, book) {
-      if(err) return res.send(500, err.message);      
-      res.status(200).jsonp(book);
-      console.log(req.body);
-    });
 
     //res.jsonp(req.body);
     //console.log(req.body);
