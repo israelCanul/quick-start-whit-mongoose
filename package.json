@@ -1,0 +1,22 @@
+{
+  "name": "quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/israelCanul/quick-start-whit-mongoose.git"
+  },
+  "author": "Israel canul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/israelCanul/quick-start-whit-mongoose/issues"
+  },
+  "homepage": "https://github.com/israelCanul/quick-start-whit-mongoose#readme",
+  "dependencies": {
+    "mongoose": "^4.1.7"
+  }
+}
